@@ -1,0 +1,130 @@
+--- maxr-0.2.1/data/max.xml~	2008-10-18 15:11:28.000000000 +0200
++++ maxr-0.2.1/data/max.xml	2008-12-23 10:51:21.000000000 +0100
+@@ -36,16 +36,16 @@
+             <Frequency Num="44100" />
+         </Sound>
+         <Paths>
+-            <Fonts Text="fonts" />
+-            <FX Text="fx" />
+-            <GFX Text="gfx" />
+-            <Maps Text="maps" />
+-            <Saves Text="save" />
+-            <Sounds Text="sounds" />
+-            <Voices Text="voices" />
+-            <Music Text="music" />
+-            <Vehicles Text="vehicles" />
+-            <Buildings Text="buildings" />
++		<Fonts Text="/usr/share/maxr/fonts" />
++		<FX Text="/usr/share/maxr/fx" />
++		<GFX Text="/usr/share/maxr/gfx" />
++		<Maps Text="/usr/share/maxr/maps" />
++		<Saves Text="/usr/share/maxr/save" />
++		<Sounds Text="/usr/share/maxr/sounds" />
++		<Voices Text="/usr/share/maxr/voices" />
++		<Music Text="/usr/share/maxr/music" />
++		<Vehicles Text="/usr/share/maxr/vehicles" />
++		<Buildings Text="/usr/share/maxr/buildings" />
+         </Paths>
+     </Game>
+ </Options>
+--- maxr-0.2.1/src/language.h~	2008-10-18 14:56:29.000000000 +0200
++++ maxr-0.2.1/src/language.h	2008-12-23 11:10:40.000000000 +0100
+@@ -32,7 +32,7 @@
+ 
+ ////////////////////////////////////////////////////////////////////////////////
+ 
+-#define LANGUAGE_FILE_FOLDER "languages"
++#define LANGUAGE_FILE_FOLDER "/usr/share/maxr/languages"
+ #define LANGUAGE_FILE_NAME   "lang_"
+ #define LANGUAGE_FILE_EXT    ".xml"
+ 
+--- maxr-0.2.1/src/main.cpp~	2008-12-23 11:38:16.000000000 +0100
++++ maxr-0.2.1/src/main.cpp	2008-12-23 11:37:57.000000000 +0100
+@@ -217,12 +217,12 @@
+ // generate SplashScreen
+ void showSplash()
+ {
+-	buffer = LoadPCX("init.pcx", false); //load splash with SDL_HWSURFACE
++	buffer = LoadPCX("/usr/share/maxr/init.pcx", false); //load splash with SDL_HWSURFACE
+ 	if (buffer == NULL)
+ 	{ //TODO: at flag for gamewide handling of SDL_HWSURFACE in case it doesn't work
+ 		cLog::write("Couldn't use hardware acceleration for images", cLog::eLOG_TYPE_ERROR);
+ 		cLog::write("This is currently not supported. Expect M.A.X. to crash!", cLog::eLOG_TYPE_ERROR);
+-		buffer = LoadPCX("init.pcx", true);
++		buffer = LoadPCX("/usr/share/maxr/init.pcx", true);
+ 		if (buffer == NULL)
+ 		{
+ 			cLog::write("Couldn't use software acceleration, too", cLog::eLOG_TYPE_ERROR);
+@@ -232,7 +232,7 @@
+ 
+ 	}
+ 
+-	SDL_WM_SetIcon ( SDL_LoadBMP ( "maxr.bmp" ), NULL ); //JCK: Icon for frame and taskmanager is set
++	SDL_WM_SetIcon ( SDL_LoadBMP ( "/usr/share/maxr/maxr.bmp" ), NULL ); //JCK: Icon for frame and taskmanager is set
+ 	screen=SDL_SetVideoMode ( SPLASHWIDTH, SPLASHHEIGHT, SettingsData.iColourDepth, SDL_HWSURFACE|SDL_NOFRAME );
+ 	SDL_BlitSurface ( buffer,NULL,screen,NULL );
+ 	SDL_WM_SetCaption ( MAXVERSION, NULL );
+--- maxr-0.2.1/src/keys.cpp~	2008-10-18 14:56:29.000000000 +0200
++++ maxr-0.2.1/src/keys.cpp	2008-12-23 12:32:31.000000000 +0100
+@@ -28,12 +28,12 @@
+ 	TiXmlDocument KeysXml;
+ 	ExTiXmlNode * pXmlNode = NULL;
+ 	string sTmpString;
+-	if(!FileExists("keys.xml"))
++	if(!FileExists("/usr/share/maxr/keys.xml"))
+ 	{
+ 		cLog::write ( "generating new file", LOG_TYPE_WARNING );
+ 		GenerateKeysXml();
+ 	}
+-	if(!KeysXml.LoadFile("keys.xml"))
++	if(!KeysXml.LoadFile("/usr/share/maxr/keys.xml"))
+ 	{
+ 		cLog::write ( "cannot load keys.xml\ngenerating new file", LOG_TYPE_WARNING );
+ 		GenerateKeysXml();
+--- maxr-0.2.1/src/loaddata.cpp~	2008-12-23 12:47:22.000000000 +0100
++++ maxr-0.2.1/src/loaddata.cpp	2008-12-23 12:47:14.000000000 +0100
+@@ -133,7 +133,7 @@
+ 			sTmpString[i] += 32;
+ 		}
+ 	}
+-	sTmpString.insert(0, (string)"languages" + PATH_DELIMITER + "lang_");
++	sTmpString.insert(0, (string)"/usr/share/maxr/languages" + PATH_DELIMITER + "lang_");
+ 	sTmpString += ".xml";
+ 	if ( LoadLanguage()!=1 || !LanguageFile.LoadFile( sTmpString.c_str() ) )
+ 	{
+@@ -512,7 +512,7 @@
+ 	// Prepare max.xml for reading
+ 	TiXmlDocument MaxXml;
+ 	ExTiXmlNode * pXmlNode = NULL;
+-	if(!FileExists("max.xml"))
++	if(!FileExists("/usr/share/maxr/max.xml"))
+ 	{
+ 		cLog::write ( "Generating new config file max.xml", LOG_TYPE_WARNING );
+ 		if( GenerateMaxXml() == -1)
+@@ -520,7 +520,7 @@
+ 			return -1;
+ 		}
+ 	}
+-	if(!MaxXml.LoadFile("max.xml"))
++	if(!MaxXml.LoadFile("/usr/share/maxr/max.xml"))
+ 	{
+ 		cLog::write ( "Can't read max.xml\n", LOG_TYPE_WARNING );
+ 		if( GenerateMaxXml() == -1)
+@@ -3316,7 +3316,7 @@
+ 	// Prepare max.xml for writing
+ 	TiXmlDocument MaxXml;
+ 	ExTiXmlNode * pXmlNode = NULL;
+-	if(!FileExists("max.xml"))
++	if(!FileExists("/usr/share/maxr/max.xml"))
+ 	{
+ 		cLog::write ( "Generating new config file max.xml (not working yet)", LOG_TYPE_WARNING );
+ 		if( GenerateMaxXml() == -1)
+@@ -3324,7 +3324,7 @@
+ 			return -1;
+ 		}
+ 	}
+-	if(!MaxXml.LoadFile("max.xml"))
++	if(!MaxXml.LoadFile("/usr/share/maxr/max.xml"))
+ 	{
+ 		cLog::write ( "Can't read max.xml\n", LOG_TYPE_WARNING );
+ 		if( GenerateMaxXml() == -1)
