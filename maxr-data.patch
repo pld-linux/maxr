@@ -1,6 +1,6 @@
---- maxr-0.2.2/data/max.xml~	2009-01-02 19:25:41.000000000 +0000
-+++ maxr-0.2.2/data/max.xml	2009-01-02 19:27:44.000000000 +0000
-@@ -36,16 +36,16 @@
+--- maxr-0.2.2/data/max.xml~	2009-01-05 16:42:05.000000000 +0100
++++ maxr-0.2.2/data/max.xml	2009-01-05 16:43:16.000000000 +0100
+@@ -36,17 +36,17 @@
              <Frequency Num="44100" />
          </Sound>
          <Paths>
@@ -14,6 +14,7 @@
 -            <Music Text="music" />
 -            <Vehicles Text="vehicles" />
 -            <Buildings Text="buildings" />
+-            <MVEs Text="mve" />
 +		<Fonts Text="/usr/share/maxr/fonts" />
 +		<FX Text="/usr/share/maxr/fx" />
 +		<GFX Text="/usr/share/maxr/gfx" />
@@ -24,9 +25,10 @@
 +		<Music Text="/usr/share/maxr/music" />
 +		<Vehicles Text="/usr/share/maxr/vehicles" />
 +		<Buildings Text="/usr/share/maxr/buildings" />
-             <MVEs Text="mve" />
++		<MVEs Text="/usr/share/maxr/mve" />
          </Paths>
      </Game>
+ </Options>
 
 --- maxr-0.2.2/src/loaddata.cpp~	2009-01-05 14:33:27.000000000 +0100
 +++ maxr-0.2.2/src/loaddata.cpp	2009-01-05 14:31:18.000000000 +0100
