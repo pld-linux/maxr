@@ -17,8 +17,8 @@
  			SettingsData.sExePath += PATH_DELIMITER;
  
  			//crude path validation
---- maxr-0.2.2/data/max.xml.orig	2008-12-23 18:35:19.000000000 +0100
-+++ maxr-0.2.2/data/max.xml	2009-01-05 17:05:35.000000000 +0100
+--- maxr-0.2.2/data/max.xml~	2009-01-05 19:37:34.000000000 +0100
++++ maxr-0.2.2/data/max.xml	2009-01-05 19:38:29.000000000 +0100
 @@ -36,17 +36,17 @@
              <Frequency Num="44100" />
          </Sound>
@@ -34,17 +34,17 @@
 -            <Vehicles Text="vehicles" />
 -            <Buildings Text="buildings" />
 -            <MVEs Text="mve" />
-+		<Fonts Text="/usr/share/maxr/fonts" />
-+		<FX Text="/usr/share/maxr/fx" />
-+		<GFX Text="/usr/share/maxr/gfx" />
-+		<Maps Text="/usr/share/maxr/maps" />
-+		<Saves Text="/usr/share/maxr/save" />
-+		<Sounds Text="/usr/share/maxr/sounds" />
-+		<Voices Text="/usr/share/maxr/voices" />
-+		<Music Text="/usr/share/maxr/music" />
-+		<Vehicles Text="/usr/share/maxr/vehicles" />
-+		<Buildings Text="/usr/share/maxr/buildings" />
-+		<MVEs Text="/usr/share/maxr/mve" />
++	    <Fonts Text="/usr/share/maxr/fonts" />
++	    <FX Text="/usr/share/maxr/fx" />
++	    <GFX Text="/usr/share/maxr/gfx" />
++	    <Maps Text="/usr/share/maxr/maps" />
++	    <Saves Text="/usr/share/maxr/save" />
++	    <Sounds Text="/usr/share/maxr/sounds" />
++	    <Voices Text="/usr/share/maxr/voices" />
++	    <Music Text="/usr/share/maxr/music" />
++	    <Vehicles Text="/usr/share/maxr/vehicles" />
++	    <Buildings Text="/usr/share/maxr/buildings" />
++	    <MVEs Text="/usr/share/maxr/mve" />
          </Paths>
      </Game>
  </Options>
