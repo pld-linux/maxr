@@ -1,18 +1,17 @@
 #
-# NOTE: source code contains some references to inexistent files, it means game is not playable in this stage
+# NOTE: source code contains some references to inexistent files, it means game is not playable without having the original max cd
 #
-# TODO:	- put config files to /etc
-#	- do not create log files in . dir
+# TODO: - do not create log files in . dir
 #
 Summary:	Strategy game
 Summary(pl.UTF-8):	Gra startegiczna
 Name:		maxr
-Version:	0.2.1
+Version:	0.2.2
 Release:	0.1
 License:	GPL v2+
 Group:		X11/Applications/Games/Strategy
 Source0:	http://www.maxthegame.de/downloads/%{name}-%{version}.tar.gz
-# Source0-md5:	1281bf4ae0461b941382ba0f394e04bc
+# Source0-md5:	700c50a5495c559ce1949598cd8c3605
 Patch0:		%{name}-Makefile.patch
 Patch1:		%{name}-data.patch
 URL:		http://www.maxthegame.de/
@@ -58,13 +57,13 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 # remove usless stuff (packaged in docs)
-rm -f $RPM_BUILD_ROOT%{_datadir}/%{name}/{AUTHORS,COPYING,MANUAL}
+rm -f $RPM_BUILD_ROOT%{_datadir}/%{name}/{AUTHORS,COPYING,MANUAL,max.xml}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc ABOUT CHANGELOG data/{AUTHORS,MANUAL}
+%doc ABOUT CHANGELOG data/{AUTHORS,MANUAL,max.xml}
 %attr(755,root,root) %{_bindir}/maxr
 %{_datadir}/%{name}
