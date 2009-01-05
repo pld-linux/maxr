@@ -19,6 +19,7 @@ BuildRequires:	SDL_mixer-devel >= 1.2
 BuildRequires:	SDL_net-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	dos2unix
 BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -38,6 +39,9 @@ Assault and Exploration) stworzonej przez Interplay w 1996 roku.
 
 %prep
 %setup -q
+
+# didn't want to patch without it
+dos2unix data/max.xml
 %patch0 -p1
 %patch1 -p1
 
