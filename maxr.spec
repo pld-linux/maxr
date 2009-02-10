@@ -14,7 +14,7 @@ Source0:	http://www.maxthegame.de/downloads/%{name}-%{version}.tar.gz
 # Source0-md5:	b52b0f6ce545085277adcf20ac4597c8
 Patch0:		%{name}-Makefile.patch
 Patch1:		%{name}-data.patch
-URL:		http://www.maxthegame.de/
+URL:		http://www.maxr.org/
 BuildRequires:	SDL_mixer-devel >= 1.2
 BuildRequires:	SDL_net-devel
 BuildRequires:	autoconf
