@@ -63,6 +63,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-#%%doc ABOUT CHANGELOG data/{AUTHORS,MANUAL,max.xml}
+%doc ABOUT CHANGELOG data/{AUTHORS,MANUAL}
 %attr(755,root,root) %{_bindir}/maxr
 %{_datadir}/%{name}
