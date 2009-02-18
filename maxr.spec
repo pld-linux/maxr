@@ -6,20 +6,17 @@
 Summary:	Strategy game
 Summary(pl.UTF-8):	Gra startegiczna
 Name:		maxr
-Version:	0.2.3
+Version:	0.2.4
 Release:	0.1
 License:	GPL v2+
 Group:		X11/Applications/Games/Strategy
 Source0:	http://www.maxthegame.de/downloads/%{name}-%{version}.tar.gz
-# Source0-md5:	b52b0f6ce545085277adcf20ac4597c8
-Patch0:		%{name}-Makefile.patch
-Patch1:		%{name}-data.patch
+# Source0-md5:	e9ff4a514f08579283e55cfdedff171b
 URL:		http://www.maxr.org/
 BuildRequires:	SDL_mixer-devel >= 1.2
 BuildRequires:	SDL_net-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	dos2unix
 BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -40,11 +37,6 @@ Assault and Exploration) stworzonej przez Interplay w 1996 roku.
 %prep
 %setup -q
 
-# didn't want to patch without it
-dos2unix data/max.xml
-%patch0 -p1
-%patch1 -p1
-
 %build
 %{__libtoolize}
 %{__aclocal}
@@ -52,6 +44,9 @@ dos2unix data/max.xml
 %{__autoheader}
 %{__automake}
 %configure
+%{__make}
+
+cd src
 %{__make}
 
 %install
@@ -68,6 +63,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc ABOUT CHANGELOG data/{AUTHORS,MANUAL,max.xml}
+#%%doc ABOUT CHANGELOG data/{AUTHORS,MANUAL,max.xml}
 %attr(755,root,root) %{_bindir}/maxr
 %{_datadir}/%{name}
