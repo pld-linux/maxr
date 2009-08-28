@@ -6,12 +6,12 @@
 Summary:	Strategy game
 Summary(pl.UTF-8):	Gra startegiczna
 Name:		maxr
-Version:	0.2.5
+Version:	0.2.6
 Release:	0.1
 License:	GPL v2+
 Group:		X11/Applications/Games/Strategy
 Source0:	http://www.maxthegame.de/downloads/%{name}-%{version}.tar.gz
-# Source0-md5:	a1425820ac15aeea4089fc6b045cf588
+# Source0-md5:	14c6545e4038b8319b132d8aa9929194
 URL:		http://www.maxr.org/
 BuildRequires:	SDL_mixer-devel >= 1.2
 BuildRequires:	SDL_net-devel
